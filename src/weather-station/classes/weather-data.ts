@@ -26,14 +26,27 @@ export class WeatherData implements SubjectInterface {
         this.humidity !== null &&
         this.pressure !== null
       ) {
-        obs.update(this.temp, this.humidity, this.pressure);
+        obs.update();
       }
     });
+  }
+
+  public getTemperature(): number | null {
+    return this.temp;
+  }
+
+  public getHumidity(): number | null {
+    return this.humidity;
+  }
+
+  public getPressure(): number | null {
+    return this.pressure;
   }
 
   public measurementsChanged() {
     this.notifyObservers();
   }
+
   public setMeasurements(temp: number, humidity: number, pressure: number) {
     this.temp = temp;
     this.humidity = humidity;
