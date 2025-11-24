@@ -1,14 +1,9 @@
 import { PizzaTypesEnum } from "../enums/pizza-types.enum";
 import { Pizza } from "./pizza";
-import { SimplePizzaFactory } from "./simple-pizza.factory";
 
-export class PizzaStore {
-  constructor(
-    private readonly pizzaFactory: SimplePizzaFactory = new SimplePizzaFactory()
-  ) {}
-
+export abstract class PizzaStore {
   public orderPizza(type: PizzaTypesEnum): Pizza {
-    const pizza = this.pizzaFactory.createPizza(type);
+    const pizza = this.createPizza(type);
 
     pizza.prepare();
     pizza.bake();
@@ -17,4 +12,6 @@ export class PizzaStore {
 
     return pizza;
   }
+
+  abstract createPizza(type: PizzaTypesEnum): Pizza;
 }
