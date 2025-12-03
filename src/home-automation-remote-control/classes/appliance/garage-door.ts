@@ -1,23 +1,28 @@
 import { GarageDoorInterface } from "../../interfaces/garage-door.interface";
 
 export class GarageDoor implements GarageDoorInterface {
+  constructor(private readonly name: string = "") {}
+
+  private prefix(): string {
+    return this.name ? `${this.name}: ` : "";
+  }
   public up() {
-    console.log("Garage Door is OPEN");
+    console.log(`${this.prefix()}Garage Door is OPEN`);
   }
 
   public down() {
-    console.log("Garage Door is CLOSED");
+    console.log(`${this.prefix()}Garage Door is CLOSED`);
   }
 
   public stop() {
-    console.log("Garage Door Stop");
+    console.log(`${this.prefix()}Garage Door Stop`);
   }
 
   public lightOn() {
-    console.log("Garage Lights ON");
+    console.log(`${this.prefix()}Garage Lights ON`);
   }
 
   public lightOff() {
-    console.log("Garage Lights OFF");
+    console.log(`${this.prefix()}Garage Lights OFF`);
   }
 }
