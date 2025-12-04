@@ -8,4 +8,9 @@ export class GarageDoorCloseCommand implements CommandInterface {
     this.garageDoor.down();
     this.garageDoor.lightOff();
   }
+
+  public undo(): void {
+    this.garageDoor.up();
+    this.garageDoor.lightOn();
+  }
 }

@@ -1,4 +1,7 @@
 export interface CeilingFanInterface {
-  on(): void;
   off(): void;
+  high(): void;
+  medium(): void;
+  low(): void;
+  getSpeed(): number;
 }

@@ -4,7 +4,11 @@ import { LightInterface } from "../../interfaces/light.interface";
 export class LightOffCommand implements CommandInterface {
   constructor(private readonly light: LightInterface) {}
 
-  public execute() {
+  public execute(): void {
     this.light.off();
+  }
+
+  public undo(): void {
+    this.light.on();
   }
 }

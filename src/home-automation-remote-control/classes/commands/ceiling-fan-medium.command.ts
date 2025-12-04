@@ -2,14 +2,14 @@ import { CommandInterface } from "../../interfaces/command.interface";
 import { CeilingFanInterface } from "../../interfaces/ceiling-fan.interface";
 import { CeilingFan } from "../appliance/ceiling-fan";
 
-export class CeilingFanOffCommand implements CommandInterface {
+export class CeilingFanMediumCommand implements CommandInterface {
   private prevSpeed: number | null = null;
 
   constructor(private readonly ceilingFan: CeilingFanInterface) {}
 
   public execute(): void {
     this.prevSpeed = this.ceilingFan.getSpeed();
-    this.ceilingFan.off();
+    this.ceilingFan.medium();
   }
 
   public undo(): void {

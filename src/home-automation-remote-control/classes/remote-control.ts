@@ -8,6 +8,7 @@ export class RemoteControl {
   private offCommands: Array<CommandInterface> = new Array<CommandInterface>(
     7
   ).fill(new NoCommandCommand());
+  private undoCommand: CommandInterface = new NoCommandCommand();
 
   constructor() {}
 
@@ -20,18 +21,25 @@ export class RemoteControl {
     this.offCommands[slot] = offCommand;
   }
 
-  public onButtonWasPushed(slot: number) {
+  public onButtonWasPushed(slot: number): void {
     const command = this.onCommands[slot];
+
     if (command !== null && command !== undefined) {
       command.execute();
+      this.undoCommand = this.offCommands[slot] || new NoCommandCommand();
     }
   }
 
-  public offButtonWasPushed(slot: number) {
+  public offButtonWasPushed(slot: number): void {
     const command = this.offCommands[slot];
     if (command !== null && command !== undefined) {
       command.execute();
+      this.undoCommand = this.onCommands[slot] || new NoCommandCommand();
     }
+  }
+
+  public undoButtonWasPushed(): void {
+    this.undoCommand.execute();
   }
 
   toString(): string {
@@ -44,6 +52,8 @@ export class RemoteControl {
         onCommand ? onCommand.constructor.name : "No Command"
       }    ${offCommand ? offCommand.constructor.name : "No Command"}\n`;
     }
+
+    stringBuff += `[undo] ${this.undoCommand.constructor.name}\n`;
 
     return stringBuff;
   }
