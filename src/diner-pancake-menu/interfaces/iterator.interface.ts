@@ -1,7 +1,7 @@
 import { MenuItem } from "../classes/menu-item";
 
-export interface IteratorInterface {
+export interface IteratorInterface<T> {
   hasNext(): boolean;
-  next(): MenuItem;
+  next(): T;
   remove(): void;
 }

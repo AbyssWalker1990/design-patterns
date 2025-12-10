@@ -1,7 +1,7 @@
 import { IteratorInterface } from "../interfaces/iterator.interface";
 import { MenuItem } from "./menu-item";
 
-export class PancakeHouseMenuIterator implements IteratorInterface {
+export class PancakeHouseMenuIterator implements IteratorInterface<MenuItem> {
   private items: MenuItem[];
   private position: number = 0;
 

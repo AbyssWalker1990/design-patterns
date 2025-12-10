@@ -1,23 +1,25 @@
 import { IteratorInterface } from "../interfaces/iterator.interface";
 import { MenuItem } from "./menu-item";
 
-export class DinerMenuIterator implements IteratorInterface<MenuItem> {
-  private items: Map<number, MenuItem>;
+export class MenuIterator
+  implements IteratorInterface<IteratorInterface<MenuItem>>
+{
+  private items: IteratorInterface<MenuItem>[];
   private position: number = 0;
 
-  constructor(items: Map<number, MenuItem>) {
+  constructor(items: IteratorInterface<MenuItem>[]) {
     this.items = items;
   }
 
-  public next(): MenuItem {
-    const item = this.items.get(this.position);
+  public next(): IteratorInterface<MenuItem> {
+    const item = this.items[this.position];
     this.position++;
 
     return item!;
   }
 
   public hasNext(): boolean {
-    return this.items.size > this.position;
+    return this.items.length > this.position;
   }
 
   public remove(): void {

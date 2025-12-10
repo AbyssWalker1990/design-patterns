@@ -1,12 +1,8 @@
-import { CafeMenu } from "./classes/cafe-menu";
-import { DinerMenu } from "./classes/diner-menu";
-import { PancakeHouseMenu } from "./classes/pancake-house-menu";
+import { Menu } from "./classes/menu";
 import { Waitress } from "./classes/waitress";
 
-const dinerMenu = new DinerMenu();
-const pancakeMenu = new PancakeHouseMenu();
-const cafeMenu = new CafeMenu();
+const menu = new Menu();
 
-const waitress = new Waitress(dinerMenu, pancakeMenu, cafeMenu);
+const waitress = new Waitress(menu.createIterator());
 
 waitress.printMenu();

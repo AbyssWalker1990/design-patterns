@@ -3,7 +3,7 @@ import { MenuInterface } from "../interfaces/menu.interface";
 import { DinerMenuIterator } from "./diner-menu-iterator";
 import { MenuItem } from "./menu-item";
 
-export class DinerMenu implements MenuInterface {
+export class DinerMenu implements MenuInterface<MenuItem> {
   private items: Map<number, MenuItem> = new Map();
   private numberOfItems = 0;
 
@@ -31,7 +31,7 @@ export class DinerMenu implements MenuInterface {
     );
   }
 
-  public createIterator(): IteratorInterface {
+  public createIterator(): IteratorInterface<MenuItem> {
     return new DinerMenuIterator(this.items);
   }
 }

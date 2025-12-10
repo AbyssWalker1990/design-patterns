@@ -1,29 +1,21 @@
 import { IteratorInterface } from "../interfaces/iterator.interface";
-import { CafeMenu } from "./cafe-menu";
-import { DinerMenu } from "./diner-menu";
-import { PancakeHouseMenu } from "./pancake-house-menu";
+import { MenuItem } from "./menu-item";
 
 export class Waitress {
   constructor(
-    private readonly dinerMenu: DinerMenu,
-    private readonly pancakeHouseMenu: PancakeHouseMenu,
-    private readonly cafeMenu: CafeMenu
+    private readonly menusIterator: IteratorInterface<
+      IteratorInterface<MenuItem>
+    >
   ) {}
 
   public printMenu(): void {
-    const pancakeHouseMenuIterator = this.pancakeHouseMenu.createIterator();
-    const dinerMenuIterator = this.dinerMenu.createIterator();
-    const cafeMenuIterator = this.cafeMenu.createIterator();
-
-    console.log("Menu\n----\nBREAKFAST");
-    this.printMenuIterator(pancakeHouseMenuIterator);
-    console.log("----\nLUNCH");
-    this.printMenuIterator(dinerMenuIterator);
-    console.log("----\nDINNER");
-    this.printMenuIterator(cafeMenuIterator);
+    while (this.menusIterator.hasNext()) {
+      const menuIterator = this.menusIterator.next();
+      this.printMenuIterator(menuIterator);
+    }
   }
 
-  private printMenuIterator(iterator: IteratorInterface): void {
+  private printMenuIterator(iterator: IteratorInterface<MenuItem>): void {
     while (iterator.hasNext()) {
       const menuItem = iterator.next();
       console.log(`${menuItem.getName()}, `);

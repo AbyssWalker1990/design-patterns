@@ -3,7 +3,7 @@ import { MenuInterface } from "../interfaces/menu.interface";
 import { MenuItem } from "./menu-item";
 import { PancakeHouseMenuIterator } from "./pancake-house-menu-iterator";
 
-export class PancakeHouseMenu implements MenuInterface {
+export class PancakeHouseMenu implements MenuInterface<MenuItem> {
   private items: MenuItem[] = [];
 
   constructor() {
@@ -32,7 +32,7 @@ export class PancakeHouseMenu implements MenuInterface {
     this.items.push(new MenuItem(name, description, isVegetarian, price));
   }
 
-  public createIterator(): IteratorInterface {
+  public createIterator(): IteratorInterface<MenuItem> {
     return new PancakeHouseMenuIterator(this.items);
   }
 }

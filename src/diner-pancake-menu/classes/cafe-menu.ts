@@ -3,7 +3,7 @@ import { MenuInterface } from "../interfaces/menu.interface";
 import { CafeMenuIterator } from "./cafe-menu-iterator";
 import { MenuItem } from "./menu-item";
 
-export class CafeMenu implements MenuInterface {
+export class CafeMenu implements MenuInterface<MenuItem> {
   private items: Set<MenuItem> = new Set();
 
   constructor() {
@@ -37,7 +37,7 @@ export class CafeMenu implements MenuInterface {
     this.items.add(new MenuItem(name, description, isVegetarian, price));
   }
 
-  public createIterator(): IteratorInterface {
+  public createIterator(): IteratorInterface<MenuItem> {
     return new CafeMenuIterator(this.items);
   }
 }

@@ -1,5 +1,5 @@
 import { IteratorInterface } from "./iterator.interface";
 
-export interface MenuInterface {
-  createIterator(): IteratorInterface;
+export interface MenuInterface<T> {
+  createIterator(): IteratorInterface<T>;
 }
