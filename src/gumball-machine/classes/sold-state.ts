@@ -1,0 +1,27 @@
+import { StateInterface } from "../interfaces/state.interface";
+import { GumballMachine } from "./gumball-machine";
+
+export class SoldState implements StateInterface {
+  constructor(private readonly gumballMachine: GumballMachine) {}
+
+  public insertQuarter(): void {
+    console.log("Please wait, we're already giving you a gumball");
+  }
+
+  public ejectQuarter(): void {
+    console.log("Sorry, you already turned the crank");
+  }
+
+  public turnCrank(): void {
+    console.log("Turning twice doesn't get you another gumball!");
+  }
+
+  public dispense(): void {
+    if (this.gumballMachine.getCount() > 0) {
+      this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+    } else {
+      console.log("Oops, out of gumballs!");
+      this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+    }
+  }
+}

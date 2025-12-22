@@ -1,21 +1,19 @@
 import { StateInterface } from "../interfaces/state.interface";
 import { GumballMachine } from "./gumball-machine";
 
-export class HasQuarterState implements StateInterface {
+export class SoldOutState implements StateInterface {
   constructor(private readonly gumballMachine: GumballMachine) {}
 
   public insertQuarter(): void {
-    console.log("You can not insert another quarter");
+    console.log("There are no gumballs");
   }
 
   public ejectQuarter(): void {
-    console.log("Quarter returned!");
-    this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+    console.log("You can't eject, you haven't inserted a quarter yet");
   }
 
   public turnCrank(): void {
-    console.log("You turned...");
-    this.gumballMachine.setState(this.gumballMachine.getSoldState());
+    console.log("You turned, but there are no gumballs");
   }
 
   public dispense(): void {

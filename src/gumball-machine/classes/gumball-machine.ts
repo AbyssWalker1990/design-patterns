@@ -1,19 +1,30 @@
 import { StateInterface } from "../interfaces/state.interface";
+import { HasQuarterState } from "./has-quarter-state";
 import { NoQuarterState } from "./no-quarter-state";
+import { SoldOutState } from "./sold-out-state";
+import { SoldState } from "./sold-state";
 
 export class GumballMachine {
   private noQuarterState: NoQuarterState;
+  private hasQuarterState: HasQuarterState;
+  private soldState: SoldState;
+  private soldOutState: SoldOutState;
 
   private state: StateInterface;
   private count: number;
 
   constructor(numberGumballs: number) {
     this.noQuarterState = new NoQuarterState(this);
+    this.hasQuarterState = new HasQuarterState(this);
+    this.soldState = new SoldState(this);
+    this.soldOutState = new SoldOutState(this);
 
     this.count = numberGumballs;
 
     if (this.count > 0) {
       this.state = this.noQuarterState;
+    } else {
+      this.state = this.soldOutState;
     }
   }
 
@@ -48,5 +59,13 @@ export class GumballMachine {
 
   public getNoQuarterState(): NoQuarterState {
     return this.noQuarterState;
+  }
+
+  public getSoldOutState(): SoldOutState {
+    return this.soldOutState;
+  }
+
+  public getSoldState(): SoldState {
+    return this.soldState;
   }
 }
