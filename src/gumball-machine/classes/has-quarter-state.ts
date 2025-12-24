@@ -4,6 +4,10 @@ import { GumballMachine } from "./gumball-machine";
 export class HasQuarterState implements StateInterface {
   constructor(private readonly gumballMachine: GumballMachine) {}
 
+  private get randomWinner(): boolean {
+    return Math.random() < 0.1 && this.gumballMachine.getCount() > 1;
+  }
+
   public insertQuarter(): void {
     console.log("You can not insert another quarter");
   }
@@ -15,7 +19,11 @@ export class HasQuarterState implements StateInterface {
 
   public turnCrank(): void {
     console.log("You turned...");
-    this.gumballMachine.setState(this.gumballMachine.getSoldState());
+    if (this.randomWinner) {
+      this.gumballMachine.setState(this.gumballMachine.getWinnerState());
+    } else {
+      this.gumballMachine.setState(this.gumballMachine.getSoldState());
+    }
   }
 
   public dispense(): void {

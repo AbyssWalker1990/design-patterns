@@ -6,7 +6,7 @@ export class NoQuarterState implements StateInterface {
 
   public insertQuarter(): void {
     console.log("You inserted quarter.");
-    this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+    this.gumballMachine.setState(this.gumballMachine.getHasQuarterState());
   }
 
   public ejectQuarter(): void {

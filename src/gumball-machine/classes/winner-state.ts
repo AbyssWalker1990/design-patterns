@@ -1,7 +1,7 @@
 import { StateInterface } from "../interfaces/state.interface";
 import { GumballMachine } from "./gumball-machine";
 
-export class SoldState implements StateInterface {
+export class WinnerState implements StateInterface {
   constructor(private readonly gumballMachine: GumballMachine) {}
 
   public insertQuarter(): void {
@@ -18,11 +18,16 @@ export class SoldState implements StateInterface {
 
   public dispense(): void {
     this.gumballMachine.releaseBall();
-    if (this.gumballMachine.getCount() > 0) {
-      this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+    if (this.gumballMachine.getCount() === 0) {
+      this.gumballMachine.setState(this.gumballMachine.getSoldState());
     } else {
-      console.log("Oops, out of gumballs!");
-      this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+      this.gumballMachine.releaseBall();
+      console.log("Tou are a WINNER!!! You have 2 gumballs");
+      if (this.gumballMachine.getCount() > 0) {
+        this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+      } else {
+        this.gumballMachine.setState(this.gumballMachine.getSoldOutState());
+      }
     }
   }
 }
