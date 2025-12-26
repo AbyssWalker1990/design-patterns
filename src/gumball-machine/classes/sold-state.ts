@@ -25,4 +25,6 @@ export class SoldState implements StateInterface {
       this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
     }
   }
+
+  public refill(): void {}
 }

@@ -12,3 +12,7 @@ console.log(gumballMachine.toString());
 gumballMachine.dispense();
 
 console.log(gumballMachine.toString());
+
+gumballMachine.refill(100);
+
+console.log(gumballMachine.toString());

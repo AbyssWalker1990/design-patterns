@@ -3,4 +3,5 @@ export interface StateInterface {
   ejectQuarter(): void;
   turnCrank(): void;
   dispense(): void;
+  refill(): void;
 }

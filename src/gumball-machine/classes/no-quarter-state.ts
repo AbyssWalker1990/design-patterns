@@ -20,4 +20,6 @@ export class NoQuarterState implements StateInterface {
   public dispense(): void {
     console.log("You need to pay first");
   }
+
+  public refill(): void {}
 }

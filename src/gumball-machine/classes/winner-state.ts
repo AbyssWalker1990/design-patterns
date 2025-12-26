@@ -30,4 +30,6 @@ export class WinnerState implements StateInterface {
       }
     }
   }
+
+  public refill(): void {}
 }

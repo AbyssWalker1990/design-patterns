@@ -19,4 +19,8 @@ export class SoldOutState implements StateInterface {
   public dispense(): void {
     console.log("No gumball dispensed");
   }
+
+  public refill(): void {
+    this.gumballMachine.setState(this.gumballMachine.getNoQuarterState());
+  }
 }

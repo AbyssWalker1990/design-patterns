@@ -29,4 +29,6 @@ export class HasQuarterState implements StateInterface {
   public dispense(): void {
     console.log("No gumball dispensed");
   }
+
+  public refill(): void {}
 }

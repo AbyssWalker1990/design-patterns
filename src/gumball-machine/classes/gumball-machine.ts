@@ -80,6 +80,14 @@ export class GumballMachine {
     return this.winnerState;
   }
 
+  public refill(count: number): void {
+    this.count += count;
+    console.log(
+      `The gumball machine was just refilled; its new count is: ${this.count}`
+    );
+    this.state.refill();
+  }
+
   public toString(): string {
     return `
 
