@@ -14,14 +14,16 @@ export class GumballMachine {
 
   private state: StateInterface;
   private count: number;
+  private location: string;
 
-  constructor(numberGumballs: number) {
+  constructor(location: string, numberGumballs: number) {
     this.noQuarterState = new NoQuarterState(this);
     this.hasQuarterState = new HasQuarterState(this);
     this.soldState = new SoldState(this);
     this.soldOutState = new SoldOutState(this);
     this.winnerState = new WinnerState(this);
 
+    this.location = location;
     this.count = numberGumballs;
 
     if (this.count > 0) {
@@ -58,6 +60,14 @@ export class GumballMachine {
 
   public getCount(): number {
     return this.count;
+  }
+
+  public getLocation(): string {
+    return this.location;
+  }
+
+  public getState(): string {
+    return this.state.constructor.name;
   }
 
   public getNoQuarterState(): NoQuarterState {
