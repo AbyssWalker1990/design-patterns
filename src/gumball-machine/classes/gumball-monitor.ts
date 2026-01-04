@@ -1,11 +1,10 @@
+import { GumballMonitorInterface } from "../interfaces/gumball-monitor.interface";
 import { GumballMachine } from "./gumball-machine";
 
-export class GumballMonitor {
+export class GumballMonitor implements GumballMonitorInterface {
   constructor(private readonly gumballMachine: GumballMachine) {}
 
-  public monitor(): void {
-    console.log(`Location: ${this.gumballMachine.getLocation()}`);
-    console.log(`Count: ${this.gumballMachine.getCount()}`);
-    console.log(`State: ${this.gumballMachine.getState()}`);
+  public async monitor(): Promise<string> {
+    return `Location: ${this.gumballMachine.getLocation()}\nCount: ${this.gumballMachine.getCount()}\nState: ${this.gumballMachine.getState()}`;
   }
 }
