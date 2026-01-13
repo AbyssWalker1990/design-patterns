@@ -3,6 +3,7 @@ import { Flock } from "./classes/composites/flock";
 import { QuackCounterDecorator } from "./classes/decorators/quack-counter-decorator";
 import { CountingDuckFactory } from "./classes/factories/counting-duck-factory";
 import { Goose } from "./classes/goose";
+import { Quackologist } from "./classes/quackologist";
 import { QuackableInterface } from "./interfaces/quackable.interface";
 
 const duckFactory = new CountingDuckFactory();
@@ -16,7 +17,7 @@ const flockOfDucks = new Flock();
 flockOfDucks.add(readHeadDuck);
 flockOfDucks.add(duckCall);
 flockOfDucks.add(rubberDuck);
-flockOfDucks.add(gooseDuck);
+// flockOfDucks.add(gooseDuck);
 
 const mallardDuck1 = duckFactory.createMallardDuck();
 const mallardDuck2 = duckFactory.createMallardDuck();
@@ -28,6 +29,10 @@ flockOfMallards.add(mallardDuck1);
 flockOfMallards.add(mallardDuck2);
 flockOfMallards.add(mallardDuck3);
 flockOfMallards.add(mallardDuck4);
+
+const quackologist = new Quackologist();
+flockOfDucks.registerObserver(quackologist);
+flockOfMallards.registerObserver(quackologist);
 
 const simulate = (duck: QuackableInterface): void => {
   duck.quack();
