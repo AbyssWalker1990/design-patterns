@@ -17,7 +17,6 @@ export class QuackCounterDecorator implements QuackableInterface {
   }
 
   public getName(): string {
-    // delegate to the wrapped duck so observers see the underlying name
     return this.duck.getName();
   }
 
